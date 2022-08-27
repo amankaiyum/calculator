@@ -71,7 +71,7 @@ operator.forEach((button) => {                        // set operation
   button.addEventListener('click', function (e) {           
     if (operation == null) operation = e.target.textContent;
     else {
-      operate();
+      operate();                  //FIX - issue after using = sign
       operation = e.target.textContent;
     }
   });
