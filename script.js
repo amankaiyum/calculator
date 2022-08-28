@@ -60,7 +60,7 @@ const equal = document.querySelector('.equal');
 
 const buttonPress = document.querySelectorAll('.disp');     
 buttonPress.forEach((button) => {                          // display 
-  button.addEventListener('click', function (e) {          // ques  
+  button.addEventListener('click', function (e) {         // ques
     question.textContent += e.target.textContent;
   });
 });
@@ -79,9 +79,10 @@ num.forEach((button) => {
   });
 });
 
-operator.forEach((button) => {                        // set operation
+operator.forEach((button) => {                         // set operation
   button.addEventListener('click', function (e) {           
     if (operation == null) operation = e.target.textContent;
+    else if (operation !== null && varB == '') return;
     else {
       operate();                 
       operation = e.target.textContent;
@@ -90,3 +91,43 @@ operator.forEach((button) => {                        // set operation
 });
 
 equal.addEventListener('click', operate);
+
+// keyboard support
+document.addEventListener('keydown', function (e) {
+  if (e.key >= 0 && e.key <= 9) {
+    document.getElementsByClassName(`n${e.key}`)[0].click();
+    document.getElementsByClassName(`n${e.key}`)[0].focus();
+  } 
+  if (e.key === '.') {
+    document.getElementsByClassName('dot')[0].click();
+    document.getElementsByClassName('dot')[0].focus();
+  }
+  if (e.key === '+') {
+    document.getElementsByClassName('plus')[0].click();
+    document.getElementsByClassName('plus')[0].focus();
+  }
+  if (e.key === '-') {
+    document.getElementsByClassName('minus')[0].click();
+    document.getElementsByClassName('minus')[0].focus();
+  }
+  if (e.key === '/') {
+    document.getElementsByClassName('divide')[0].click();
+    document.getElementsByClassName('divide')[0].focus();
+  }
+  if (e.key === '*') {
+    document.getElementsByClassName('mult')[0].click();
+    document.getElementsByClassName('mult')[0].focus();
+  }
+  if (e.key === '=' || e.key === 'Enter') {
+    document.getElementsByClassName('equal')[0].click();
+    document.getElementsByClassName('equal')[0].focus();
+  }
+  if (e.key === 'Escape') {
+    document.getElementsByClassName('ac')[0].click();
+    document.getElementsByClassName('ac')[0].focus();
+  }
+  if (e.key === 'Backspace') {
+    document.getElementsByClassName('del')[0].click();
+    document.getElementsByClassName('del')[0].focus();
+  }
+})
