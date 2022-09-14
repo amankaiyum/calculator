@@ -5,6 +5,10 @@
   font-family: 'Roboto', sans-serif;
 }
 
+*:focus {
+  outline: none;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -30,7 +34,7 @@ h1 {
   flex-direction: column;
   background-color: rgb(44, 43, 36);
   width: 310px;
-  height: 450px;
+  min-height: 450px;
   border-radius: 25px;
   align-items: center;
   box-shadow: 0 8px 16px 0;
@@ -96,26 +100,26 @@ button {
   height: 28px;
 }
 
-button:active {
+button:active, button:focus {
   transform: translateY(4px);
 }
 
-.num:hover {
+.num:hover, .num:focus {
   background-color: rgb(247, 163, 68);
   border: 2px solid black;
 }
 
-.op:hover {
+.op:hover, .op:focus {
   background-color: rgb(65, 202, 186);
   border: 2px solid black;
 }
 
-.equal:hover {
+.equal:hover, .equal:focus {
   background-color: rgb(61, 150, 70);
   border: 2px solid black;
 }
 
-.wide:hover {
+.wide:hover, .wide:focus {
   background-color: rgb(174, 97, 90);
   border: 2px solid black;
 }

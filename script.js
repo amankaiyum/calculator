@@ -40,11 +40,19 @@ function operate() {
   if (operation == '-') subtract(parseFloat(varA), parseFloat(varB));
   if (operation == 'x') multiply(parseFloat(varA), parseFloat(varB));
   if (operation == '÷') divide(parseFloat(varA), parseFloat(varB));
+  if (operation == null) answervar = varA;
   varA = answervar;
   varB = '';
   operation = null;
   answer.textContent = answervar;
 }
+
+function blurAll(){                                 // remove focus
+  var tmp = document.createElement("input");        // from elements
+  document.body.appendChild(tmp);
+  tmp.focus();
+  document.body.removeChild(tmp);
+ }
 
 let varA = '';
 let varB = '';
@@ -65,8 +73,14 @@ buttonPress.forEach((button) => {                          // display
   });
 });
 
-clear.addEventListener('click', clearQuestion);          //clear button
-deleteNum.addEventListener('click', del);               //delete button
+clear.addEventListener('click', () => {                //clear button
+  clearQuestion();
+  setTimeout(blurAll, 100);
+});          
+deleteNum.addEventListener('click', () => {            //delete button
+  del();                  
+  setTimeout(blurAll, 100);
+});               
 
 num.forEach((button) => {
   button.addEventListener('click', function (e) {  
@@ -75,7 +89,8 @@ num.forEach((button) => {
       question.textContent = e.target.textContent;
     }
     if (operation == null) varA += e.target.textContent;  
-    else varB += e.target.textContent;                   
+    else varB += e.target.textContent;
+    setTimeout(blurAll, 100);                 
   });
 });
 
@@ -87,10 +102,14 @@ operator.forEach((button) => {                         // set operation
       operate();                 
       operation = e.target.textContent;
     }
+    setTimeout(blurAll, 100);
   });
 });
 
-equal.addEventListener('click', operate);
+equal.addEventListener('click', () => {
+  operate();
+  setTimeout(blurAll, 100);
+});
 
 // keyboard support
 document.addEventListener('keydown', function (e) {
@@ -130,4 +149,5 @@ document.addEventListener('keydown', function (e) {
     document.getElementsByClassName('del')[0].click();
     document.getElementsByClassName('del')[0].focus();
   }
+  setTimeout(blurAll, 100);
 })
